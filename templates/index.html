@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="YouTube 링크를 영상 MP4 또는 오디오 MP3 파일로 저장하는 심플한 다운로더입니다." />
+    <title>Clipdrop — YouTube Downloader</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <main class="shell">
+      <nav class="topbar" aria-label="주 메뉴">
+        <a class="brand" href="/" aria-label="Clipdrop 홈">
+          <span class="brand-mark"><span></span><span></span><span></span></span>
+          <span>clipdrop</span>
+        </a>
+        <div class="nav-note"><span class="status-dot"></span> 빠르고 간단하게</div>
+      </nav>
+
+      <section class="hero">
+        <p class="eyebrow">YOUTUBE DOWNLOADER</p>
+        <h1>보고 싶은 영상을<br /><em>바로 저장하세요.</em></h1>
+        <p class="subcopy">링크 하나면 충분해요. 영상 또는 오디오 파일로<br class="desktop-only" /> 깔끔하게 다운로드할 수 있습니다.</p>
+      </section>
+
+      <section class="download-card" aria-label="다운로드 설정">
+        <label class="input-label" for="url">YouTube URL</label>
+        <div class="url-row">
+          <div class="url-input-wrap">
+            <svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07.07l2-2a5 5 0 0 0-7.07-7.07l-1.15 1.15M14 11a5 5 0 0 0-7.07-.07l-2 2A5 5 0 0 0 7 20l1.15-1.15" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" /></svg>
+            <input id="url" type="url" autocomplete="url" placeholder="https://youtube.com/watch?v=..." />
+            <button id="clear-url" class="clear-btn" type="button" aria-label="URL 지우기">×</button>
+          </div>
+          <button id="download-btn" class="primary-btn" type="button">
+            <span>다운로드</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" /></svg>
+          </button>
+        </div>
+
+        <div class="options-row">
+          <span class="option-title">저장 형식</span>
+          <div class="format-options" role="radiogroup" aria-label="저장 형식">
+            <label class="format-option active"><input type="radio" name="format" value="video" checked /><span class="radio-mark"></span><span>영상 <small>MP4</small></span></label>
+            <label class="format-option"><input type="radio" name="format" value="audio" /><span class="radio-mark"></span><span>오디오 <small>MP3</small></span></label>
+          </div>
+        </div>
+        <p id="form-error" class="form-error" role="alert"></p>
+      </section>
+
+      <section id="progress-panel" class="progress-panel hidden" aria-live="polite">
+        <div class="progress-heading"><span id="progress-message">다운로드를 준비하고 있습니다…</span><strong id="progress-value">0%</strong></div>
+        <div class="progress-track"><div id="progress-bar" class="progress-bar"></div></div>
+      </section>
+
+      <section id="result-panel" class="result-panel hidden" aria-live="polite">
+        <div class="result-icon">✓</div>
+        <div class="result-copy"><strong id="result-title">다운로드 완료</strong><span id="result-message">파일이 준비되었습니다.</span></div>
+        <a id="save-btn" class="save-btn" href="#">파일 저장 <span>↓</span></a>
+      </section>
+
+      <p class="legal-note">저작권이 있는 콘텐츠는 권리자의 허락을 받은 경우에만 저장하세요.</p>
+    </main>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>
